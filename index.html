@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#f2f4ef" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d1413" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="data:," />
+  <title>Trần Thanh Hoà — Lãnh đạo Khách hàng Doanh nghiệp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f2f4ef;
+      --surface: #fbfcf8;
+      --ink: #172220;
+      --muted: #52615e;
+      --line: #c8d0ca;
+      --line-strong: #86938d;
+      --accent: #116b53;
+      --accent-soft: #dcebe3;
+      --gold: #9a640f;
+      --gold-soft: #eadfc6;
+      --chart-line: #7f918a;
+      --shadow: 0 24px 70px rgba(25, 43, 38, .09);
+      --max: 1220px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #0d1413;
+        --surface: #131d1b;
+        --ink: #edf3ef;
+        --muted: #aebbb6;
+        --line: #2d3b37;
+        --line-strong: #5e716a;
+        --accent: #63c3a2;
+        --accent-soft: #18372d;
+        --gold: #e2ad5c;
+        --gold-soft: #3d321f;
+        --chart-line: #71857d;
+        --shadow: 0 24px 70px rgba(0, 0, 0, .24);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), color-mix(in srgb, var(--line) 35%, transparent) calc(100% - 1px)) 0 0 / min(9vw, 116px) 100%,
+        linear-gradient(180deg, color-mix(in srgb, var(--accent-soft) 42%, transparent) 0, transparent 34rem),
+        var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    ::selection { background: var(--accent); color: var(--paper); }
+    .skip {
+      position: fixed; left: 1rem; top: -4rem; z-index: 20;
+      background: var(--ink); color: var(--paper); padding: .65rem 1rem; text-decoration: none;
+    }
+    .skip:focus { top: 1rem; }
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 64px) 80px; }
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.48fr) minmax(255px, .52fr);
+      gap: clamp(44px, 7vw, 100px);
+      align-items: end;
+      padding: clamp(72px, 12vh, 150px) 0 clamp(56px, 9vh, 104px);
+      border-bottom: 1px solid var(--line-strong);
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; top: 34px; left: 0;
+      width: 46px; height: 4px; background: var(--accent);
+    }
+    .eyebrow, .section-no, .role-meta, .metric-label, .chip, .nav-link {
+      font-family: "IBM Plex Mono", monospace;
+      letter-spacing: .035em;
+    }
+    .eyebrow { color: var(--accent); font-size: .78rem; font-weight: 500; margin: 0 0 1.7rem; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-family: "Newsreader", serif;
+      font-weight: 600;
+      font-size: clamp(4.3rem, 10vw, 8.9rem);
+      line-height: .82;
+      letter-spacing: -.065em;
+      margin-bottom: 2.3rem;
+      max-width: 870px;
+    }
+    h1 span { display: block; color: var(--accent); }
+    .hero-lede {
+      max-width: 720px;
+      font-size: clamp(1.15rem, 2vw, 1.42rem);
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+    .hero-aside { padding-bottom: .35rem; }
+    .hero-visual {
+      margin: 0 0 2.8rem;
+      border-top: 1px solid var(--line-strong);
+      border-bottom: 1px solid var(--line);
+      padding: 1.1rem 0 1.2rem;
+      position: relative;
+    }
+    .hero-visual::before {
+      content: "TĂNG TRƯỞNG · KỶ LUẬT";
+      display: block;
+      margin-bottom: .8rem;
+      color: var(--gold);
+      font: 500 .64rem/1.4 "IBM Plex Mono", monospace;
+      letter-spacing: .08em;
+    }
+    .hero-visual svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .hero-visual .grid-line { stroke: var(--line); stroke-width: 1; }
+    .hero-visual .bar { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1; }
+    .hero-visual .trend { fill: none; stroke: var(--gold); stroke-width: 2.25; stroke-linecap: square; stroke-linejoin: miter; }
+    .hero-visual .node { fill: var(--surface); stroke: var(--gold); stroke-width: 1.5; }
+    .hero-visual .capital-ring { fill: none; stroke: var(--chart-line); stroke-width: 1; }
+    .hero-visual .capital-core { fill: var(--gold); }
+    .focus-label { color: var(--muted); font-size: .82rem; margin: 0 0 .75rem; }
+    .focus {
+      font-family: "Newsreader", serif;
+      font-size: clamp(1.75rem, 2.6vw, 2.55rem);
+      line-height: 1.08;
+      margin-bottom: 2.5rem;
+    }
+    .place { border-top: 1px solid var(--line); padding-top: 1rem; color: var(--muted); }
+    .place strong { display: block; color: var(--ink); font-weight: 500; }
+    .layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(44px, 8vw, 120px); }
+    .rail { position: relative; }
+    .rail-inner { position: sticky; top: 26px; padding-top: 72px; }
+    .rail nav { display: grid; gap: .15rem; }
+    .nav-link {
+      text-decoration: none;
+      font-size: .78rem;
+      color: var(--muted);
+      padding: .45rem 0;
+      transition: color .2s ease, transform .2s ease;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--accent); transform: translateX(5px); }
+    .nav-link span { color: var(--line-strong); display: inline-block; width: 2.3rem; }
+    .rail-note { margin-top: 3rem; color: var(--muted); font-size: .78rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+    .content section { scroll-margin-top: 30px; padding: 76px 0 82px; border-bottom: 1px solid var(--line-strong); }
+    .section-head { display: grid; grid-template-columns: 72px 1fr; align-items: start; gap: 1rem; margin-bottom: 3.2rem; }
+    .section-no { color: var(--accent); font-size: .78rem; padding-top: .85rem; }
+    h2 {
+      font-family: "Newsreader", serif;
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      letter-spacing: -.045em;
+      line-height: .96;
+      margin: 0;
+      font-weight: 600;
+    }
+    .intro-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(34px, 7vw, 90px); }
+    .intro-copy { font-size: clamp(1.08rem, 2vw, 1.28rem); line-height: 1.65; }
+    .principles { margin: 0; display: grid; }
+    .principle { display: grid; grid-template-columns: 32px 1fr; gap: .85rem; border-top: 1px solid var(--line); padding: 1rem 0; }
+    .principle:first-child { border-top-color: var(--line-strong); }
+    .principle dt { color: var(--accent); font-family: "IBM Plex Mono", monospace; }
+    .principle dd { margin: 0; font-weight: 500; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); box-shadow: var(--shadow); position: relative; }
+    .metrics::before { content: ""; position: absolute; inset: 0 0 auto; height: 3px; background: linear-gradient(90deg, var(--gold) 0 24%, var(--accent) 24% 100%); }
+    .metric { min-height: 190px; padding: clamp(28px, 4vw, 42px) clamp(24px, 4vw, 40px) clamp(24px, 4vw, 40px); border-right: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; }
+    .metric:last-child { border-right: 0; }
+    .metric-value { font-family: "Newsreader", serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; color: var(--accent); }
+    .metric-label { font-size: .76rem; line-height: 1.5; color: var(--muted); max-width: 180px; }
+    .timeline { margin-left: 72px; }
+    .role { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: clamp(24px, 5vw, 70px); padding: 0 0 3.4rem; position: relative; }
+    .role + .role { padding-top: 3.4rem; border-top: 1px solid var(--line); }
+    .role-meta { font-size: .74rem; color: var(--muted); line-height: 1.65; }
+    .role-meta strong { color: var(--ink); font-weight: 500; }
+    h3 { font-family: "Newsreader", serif; font-size: clamp(1.65rem, 3vw, 2.3rem); line-height: 1.1; margin-bottom: .65rem; font-weight: 600; }
+    .company { color: var(--accent); font-weight: 500; margin-bottom: 1rem; }
+    .role-body ul { margin: 0; padding: 0; list-style: none; color: var(--muted); }
+    .role-body li { position: relative; padding-left: 1.15rem; margin-top: .45rem; }
+    .role-body li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+    .awards { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
+    .award { background: var(--surface); padding: clamp(24px, 4vw, 42px); min-height: 205px; }
+    .award-year { font: 500 .75rem/1.3 "IBM Plex Mono", monospace; color: var(--gold); }
+    .award h3 { margin: 2rem 0 .7rem; font-size: clamp(1.4rem, 2.5vw, 2rem); }
+    .award p { color: var(--muted); margin-bottom: 0; }
+    .capabilities { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(34px, 6vw, 80px); }
+    .skill-group { border-top: 2px solid var(--ink); padding-top: 1.3rem; }
+    .skill-group h3 { font-family: "IBM Plex Sans", sans-serif; font-size: .95rem; letter-spacing: .02em; }
+    .chips { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.3rem; }
+    .chip { font-size: .74rem; border: 1px solid var(--line-strong); padding: .55rem .72rem; background: transparent; }
+    .education { display: grid; gap: 0; margin-left: 72px; }
+    .edu { display: grid; grid-template-columns: 120px 1fr; gap: 2rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+    .edu:first-child { border-top-color: var(--line-strong); }
+    .edu .year { font: .75rem/1.6 "IBM Plex Mono", monospace; color: var(--accent); }
+    .edu strong { display: block; font-weight: 500; font-size: 1.04rem; }
+    .edu span { color: var(--muted); }
+    .closing { padding: 80px 0 20px; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: end; }
+    .closing blockquote { margin: 0; font: 500 clamp(2rem, 4.5vw, 4.4rem)/1.05 "Newsreader", serif; letter-spacing: -.035em; max-width: 800px; }
+    .closing-mark { width: 54px; height: 54px; border: 1px solid var(--line-strong); border-radius: 50%; display: grid; place-items: center; color: var(--accent); font-size: 1.5rem; }
+    @media (max-width: 800px) {
+      body { background-size: 70px 100%; }
+      .page { padding-bottom: 45px; }
+      .hero { min-height: auto; grid-template-columns: 1fr; gap: 48px; align-items: start; padding-top: 100px; }
+      h1 { font-size: clamp(4rem, 21vw, 6.2rem); }
+      .hero-aside { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .hero-visual { grid-column: 1 / -1; margin-bottom: .25rem; max-width: 420px; }
+      .focus { margin-bottom: 0; }
+      .layout { display: block; }
+      .rail { display: none; }
+      .content section { padding: 60px 0 64px; }
+      .section-head { grid-template-columns: 46px 1fr; margin-bottom: 2.3rem; }
+      .intro-grid, .capabilities { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { min-height: 138px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .metric:last-child { border-bottom: 0; }
+      .timeline, .education { margin-left: 0; }
+      .role { grid-template-columns: 1fr; gap: .8rem; }
+      .role + .role { padding-top: 2.6rem; }
+      .awards { grid-template-columns: 1fr; }
+      .award { min-height: auto; }
+      .edu { grid-template-columns: 88px 1fr; gap: 1rem; }
+    }
+    @media (max-width: 520px) {
+      .hero-aside { grid-template-columns: 1fr; }
+      .focus { font-size: 1.8rem; }
+      .section-head { display: block; }
+      .section-no { display: block; padding: 0 0 .7rem; }
+      .edu { grid-template-columns: 1fr; gap: .35rem; }
+      .closing { grid-template-columns: 1fr; }
+      .closing-mark { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#noi-dung">Bỏ qua điều hướng</a>
+  <main class="page" id="noi-dung">
+    <header class="hero" id="dau-trang">
+      <div>
+        <p class="eyebrow">LÃNH ĐẠO KHÁCH HÀNG DOANH NGHIỆP</p>
+        <h1>Trần Thanh <span>Hoà</span></h1>
+        <p class="hero-lede">Nhà quản lý ngân hàng theo đuổi tăng trưởng có kỷ luật—kết nối chiến lược kinh doanh, năng lực đội ngũ và quản trị rủi ro để tạo giá trị bền vững cho khách hàng doanh nghiệp.</p>
+      </div>
+      <aside class="hero-aside" aria-label="Định hướng nghề nghiệp">
+        <figure class="hero-visual" aria-label="Minh hoạ tăng trưởng tài chính bền vững">
+          <svg viewBox="0 0 280 184" role="img" aria-labelledby="finance-title finance-desc">
+            <title id="finance-title">Tăng trưởng tài chính có kỷ luật</title>
+            <desc id="finance-desc">Các cột tăng trưởng, đường xu hướng đi lên và biểu tượng nguồn vốn.</desc>
+            <g aria-hidden="true">
+              <path class="grid-line" d="M0 150.5H280M0 106.5H280M0 62.5H280M0 18.5H280" />
+              <path class="grid-line" d="M20.5 0V168M86.5 0V168M152.5 0V168M218.5 0V168" />
+              <rect class="bar" x="28" y="112" width="30" height="56" />
+              <rect class="bar" x="94" y="86" width="30" height="82" />
+              <rect class="bar" x="160" y="57" width="30" height="111" />
+              <path class="trend" d="M18 139L82 116L145 92L216 40L260 17" />
+              <circle class="node" cx="82" cy="116" r="4.5" />
+              <circle class="node" cx="145" cy="92" r="4.5" />
+              <circle class="node" cx="216" cy="40" r="4.5" />
+              <circle class="capital-ring" cx="244" cy="131" r="30" />
+              <circle class="capital-ring" cx="244" cy="131" r="20" />
+              <circle class="capital-core" cx="244" cy="131" r="5" />
+            </g>
+          </svg>
+        </figure>
+        <div>
+          <p class="focus-label">Định hướng</p>
+          <p class="focus">Giám đốc Chi nhánh<br />Giám đốc KHDN CIB / SME</p>
+        </div>
+        <p class="place"><strong>Địa điểm</strong>TP. Hồ Chí Minh</p>
+      </aside>
+    </header>
+
+    <div class="layout">
+      <aside class="rail" aria-label="Điều hướng nội dung">
+        <div class="rail-inner">
+          <nav>
+            <a class="nav-link active" href="#tong-quan"><span>01</span>Tổng quan</a>
+            <a class="nav-link" href="#dau-an"><span>02</span>Dấu ấn</a>
+            <a class="nav-link" href="#kinh-nghiem"><span>03</span>Kinh nghiệm</a>
+            <a class="nav-link" href="#thanh-tich"><span>04</span>Thành tích</a>
+            <a class="nav-link" href="#nang-luc"><span>05</span>Năng lực</a>
+            <a class="nav-link" href="#hoc-van"><span>06</span>Học vấn</a>
+          </nav>
+          <p class="rail-note">Hồ sơ nghề nghiệp<br />Khách hàng doanh nghiệp</p>
+        </div>
+      </aside>
+
+      <div class="content">
+        <section id="tong-quan">
+          <div class="section-head"><span class="section-no">01</span><h2>Tổng quan</h2></div>
+          <div class="intro-grid">
+            <p class="intro-copy">Kinh nghiệm trong lĩnh vực khách hàng doanh nghiệp từ năm 2013, đi qua các phân khúc SME, CIB và MM USME trước khi đảm nhiệm vai trò quản lý. Nền tảng chuyên môn kết hợp giữa phát triển kinh doanh, thẩm định tín dụng, phân tích tài chính và điều hành đội ngũ.</p>
+            <dl class="principles">
+              <div class="principle"><dt>01</dt><dd>Chính trực trong quyết định</dd></div>
+              <div class="principle"><dt>02</dt><dd>Trách nhiệm với mục tiêu</dd></div>
+              <div class="principle"><dt>03</dt><dd>Năng động trong thực thi</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section id="dau-an">
+          <div class="section-head"><span class="section-no">02</span><h2>Dấu ấn quản lý</h2></div>
+          <div class="metrics" aria-label="Các số liệu nổi bật">
+            <article class="metric"><strong class="metric-value">25–35%</strong><span class="metric-label">Mục tiêu tăng trưởng kinh doanh hằng năm của đơn vị phụ trách</span></article>
+            <article class="metric"><strong class="metric-value">200–2.000</strong><span class="metric-label">Tỷ đồng doanh thu — quy mô khách hàng MM USME quản lý</span></article>
+            <article class="metric"><strong class="metric-value">3 năm</strong><span class="metric-label">Liên tiếp đạt thành tích A1, A2 trong giai đoạn 2020–2022</span></article>
+          </div>
+        </section>
+
+        <section id="kinh-nghiem">
+          <div class="section-head"><span class="section-no">03</span><h2>Hành trình nghề nghiệp</h2></div>
+          <div class="timeline">
+            <article class="role">
+              <div class="role-meta"><strong>11/2018 – 11/2023*</strong><br />Ngân hàng</div>
+              <div class="role-body">
+                <h3>Giám đốc KHDN MM USME kiêm Phó Giám đốc Chi nhánh</h3>
+                <p class="company">Techcombank · Trung tâm KHDN Quang Trung</p>
+                <ul>
+                  <li>Quản lý phân khúc khách hàng doanh nghiệp có doanh thu từ 200 đến 2.000 tỷ đồng.</li>
+                  <li>Dẫn dắt đội ngũ RM và ARM thực hiện mục tiêu kinh doanh, đồng thời kiểm soát rủi ro trong mảng phụ trách.</li>
+                  <li>Được ghi nhận là thành viên nhóm Lãnh đạo tiềm năng (HIPO).</li>
+                </ul>
+              </div>
+            </article>
+            <article class="role">
+              <div class="role-meta"><strong>11/2016 – 07/2018</strong><br />Quản lý dự án</div>
+              <div class="role-body">
+                <h3>Phó Giám đốc Dự án</h3>
+                <p class="company">Công ty Giống cây trồng Việt Hoà</p>
+                <ul>
+                  <li>Xây dựng đội ngũ bán hàng, marketing và quản trị rủi ro cho thị trường miền Nam.</li>
+                  <li>Điều phối nhân sự, giám sát tiến độ và tham mưu triển khai dự án.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="role">
+              <div class="role-meta"><strong>03/2015 – 11/2016</strong><br />CIB</div>
+              <div class="role-body">
+                <h3>Chuyên viên Khách hàng lớn</h3>
+                <p class="company">MBBank · Chi nhánh TP. Hồ Chí Minh</p>
+                <ul>
+                  <li>Phát triển và duy trì quan hệ với doanh nghiệp có doanh thu trên 1.000 tỷ đồng mỗi năm.</li>
+                  <li>Thẩm định tín dụng, phân tích rủi ro và giám sát việc thực thi cam kết sau cấp tín dụng.</li>
+                </ul>
+              </div>
+            </article>
+            <article class="role">
+              <div class="role-meta"><strong>07/2013 – 03/2015</strong><br />SME</div>
+              <div class="role-body">
+                <h3>Chuyên viên Khách hàng Doanh nghiệp SME</h3>
+                <p class="company">MBBank · PGD Tân Hương</p>
+                <ul>
+                  <li>Tư vấn giải pháp tài chính cho doanh nghiệp có doanh thu từ 20 đến 1.000 tỷ đồng mỗi năm.</li>
+                  <li>Quản lý quan hệ khách hàng, thẩm định sơ bộ và theo dõi việc sử dụng vốn vay.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <p style="margin: 1.5rem 0 0 72px; color: var(--muted); font-size: .76rem;">* Mốc gần nhất theo hồ sơ được cập nhật tháng 11/2023.</p>
+        </section>
+
+        <section id="thanh-tich">
+          <div class="section-head"><span class="section-no">04</span><h2>Thành tích tiêu biểu</h2></div>
+          <div class="awards">
+            <article class="award"><span class="award-year">2020—2022</span><h3>Thành tích A1, A2</h3><p>Ba năm liên tiếp được ghi nhận tại Techcombank.</p></article>
+            <article class="award"><span class="award-year">2022</span><h3>Thành tích cao & HIPO</h3><p>Đạt danh hiệu thành tích cao và được lựa chọn vào nhóm Lãnh đạo tiềm năng.</p></article>
+            <article class="award"><span class="award-year">2016</span><h3>Chiến sĩ thi đua cơ sở</h3><p>Danh hiệu 6 tháng đầu năm tại MBBank.</p></article>
+            <article class="award"><span class="award-year">2014—2015</span><h3>Nhân viên xuất sắc & tiềm năng</h3><p>Nhiều lần được ghi nhận trong giai đoạn làm việc tại MBBank TP. Hồ Chí Minh.</p></article>
+          </div>
+        </section>
+
+        <section id="nang-luc">
+          <div class="section-head"><span class="section-no">05</span><h2>Năng lực cốt lõi</h2></div>
+          <div class="capabilities">
+            <article class="skill-group">
+              <h3>Quản trị & tăng trưởng</h3>
+              <div class="chips"><span class="chip">Lãnh đạo đội ngũ</span><span class="chip">Phát triển kinh doanh</span><span class="chip">Quản trị mục tiêu</span><span class="chip">Quản lý dự án</span><span class="chip">Phân phối khu vực</span></div>
+            </article>
+            <article class="skill-group">
+              <h3>Tài chính doanh nghiệp</h3>
+              <div class="chips"><span class="chip">Quan hệ KHDN</span><span class="chip">SME / CIB / MM USME</span><span class="chip">Thẩm định tín dụng</span><span class="chip">Phân tích tài chính</span><span class="chip">Quản trị rủi ro</span></div>
+            </article>
+            <article class="skill-group">
+              <h3>Dữ liệu & công cụ</h3>
+              <div class="chips"><span class="chip">Excel nâng cao</span><span class="chip">Power Query</span><span class="chip">VBA</span><span class="chip">PowerPoint</span><span class="chip">Outlook</span></div>
+            </article>
+            <article class="skill-group">
+              <h3>Ngôn ngữ</h3>
+              <div class="chips"><span class="chip">Tiếng Việt</span><span class="chip">Tiếng Anh — TOEIC 660</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="hoc-van">
+          <div class="section-head"><span class="section-no">06</span><h2>Học vấn & đào tạo</h2></div>
+          <div class="education">
+            <article class="edu"><div class="year">2015—2017</div><div><strong>Quản trị kinh doanh · Sau đại học</strong><span>Viện Đào tạo Quốc tế, Đại học Kinh tế TP. Hồ Chí Minh (ISB)</span></div></article>
+            <article class="edu"><div class="year">2009—2013</div><div><strong>Ngân hàng · Đại học</strong><span>Đại học Kinh tế TP. Hồ Chí Minh</span></div></article>
+            <article class="edu"><div class="year">ĐÀO TẠO</div><div><strong>Excel nâng cao</strong><span>Xử lý dữ liệu, Power Query và VBA · Unitrain</span></div></article>
+          </div>
+        </section>
+
+        <footer class="closing">
+          <blockquote>“Tăng trưởng bền vững bắt đầu từ một đội ngũ mạnh và những quyết định có kỷ luật.”</blockquote>
+          <a class="closing-mark" href="#dau-trang" aria-label="Về đầu trang">↑</a>
+        </footer>
+      </div>
+    </div>
+  </main>
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+      var sections = links.map(function (link) { return document.querySelector(link.getAttribute('href')); }).filter(Boolean);
+      if (!('IntersectionObserver' in window)) return;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (link) { link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id); });
+        });
+      }, { rootMargin: '-18% 0px -68% 0px', threshold: 0 });
+      sections.forEach(function (section) { observer.observe(section); });
+    }());
+  </script>
+</body>
+</html>
